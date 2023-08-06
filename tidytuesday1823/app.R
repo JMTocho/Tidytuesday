@@ -1,20 +1,12 @@
-####Shinyapp 1-8 tidytuesday
+####TidyTuesday1.08.23
 
 library(shiny)
-library(shiny.fluent)
-library(shinyWidgets)
-library(readxl)
 library(dplyr)
-library(stringr)
 library(DT)
 library(sf)
 library(lubridate)
 library(leaflet)
-library(RColorBrewer)
-library(plotly)
-library(ggrepel)
 library(bslib)
-library(htmltools)
 
 
 
@@ -46,12 +38,10 @@ custom_theme <- bs_theme(
 )
 
 
-
-# Define UI for application that draws a histogram
+####UI ----
 ui <- navbarPage(
   title = "Tidytuesday: 2023-08-01",
   theme = custom_theme,
-  ####Capítulo-1 ----
   tabPanel("US State Names",
            fluidRow(
              column(9,
@@ -79,12 +69,12 @@ ui <- navbarPage(
 )
 
 
-
+####Server ----
 server <- function(input, output) {
   
   
   
-  #### Mapa proyecciones poblacionales ----
+  #### Map ----
   
   output$mapa <- renderLeaflet({
     
@@ -129,7 +119,7 @@ server <- function(input, output) {
     
   })
   
-  #### Tabla states data ----
+  #### Table states ----
   output$tabla <- renderDataTable({
     datar <- states[,c(1,6,5)]
     datar <- rename(datar, "State" = "state")
