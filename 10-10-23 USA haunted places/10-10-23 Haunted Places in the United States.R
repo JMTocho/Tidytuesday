@@ -30,6 +30,7 @@ res <- dfr |> group_by(state) |>
 c <- dfr |>
   filter(!is.na(longitude) | !is.na(latitude)) |>
   filter(!Location_spec == "No")
+
   
 
 locr <- unique(c$Location_spec)
@@ -107,6 +108,7 @@ legend <- htmltools::HTML(
 
   
 mp <- leaflet() |>
+  setView(lng = -104.52898029491769, lat = 39.210175260752344, zoom = 4) |>
   addProviderTiles(provider = "CartoDB.DarkMatter")
 
 for (i in lpal) {
@@ -127,13 +129,12 @@ for (i in lpal) {
 }
 
 
-
 mapa <- mp |>
   addLegend(data = c, "bottomright",
             colors = c("#FBE426","#FF00B6","#00FFBE"), 
             labels = c("University","College","School"),
             title = "Ref.",
-            opacity = 1) |> 
+            opacity = 1) |>
   htmlwidgets::prependContent(style) |>
   htmlwidgets::appendContent(legend)
 
@@ -141,9 +142,9 @@ mapa <- mp |>
 
 
 saveWidget(mapa, file="map.html")
-webshot("map.html","map.png", vwidth = 1300, vheight = 750)
+webshot("map.html","map.png", vwidth = 1350, vheight = 800)
+
 
 mapa
-
 
 
