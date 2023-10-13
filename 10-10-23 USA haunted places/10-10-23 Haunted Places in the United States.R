@@ -2,6 +2,8 @@ library(pacman)
 p_load(tidyverse,tidytuesdayR,leaflet,htmlwidgets,webshot)
 
 
+
+####start
 tuesdata <- tidytuesdayR::tt_load('2023-10-10')
 
 
